@@ -1,18 +1,20 @@
-const { app, BrowserWindow } = require("electron");
-const isDev = require("electron-is-dev");
-const path = require("path");
-
-let mainWindow;
+import { app, BrowserWindow } from "electron";
+import isDev from "electron-is-dev";
+import path from "path";
 
 function createWindow() {
-	mainWindow = new BrowserWindow({
+	const mainWindow = new BrowserWindow({
+		fullscreen: true,
 		width: 800,
 		height: 600,
 		show: false,
+		frame: false,
+		transparent: true,
 	});
-	const startURL = isDev
-		? "http://localhost:3000"
-		: `file://${path.join(__dirname, "../build/index.html")}`;
+	mainWindow.setIgnoreMouseEvents(true);
+	mainWindow.setAlwaysOnTop(true, "screen");
+
+	const startURL = isDev ? "http://localhost:3000" : `file://${path.join(__dirname, "../build/index.html")}`;
 
 	mainWindow.loadURL(startURL);
 
@@ -20,5 +22,10 @@ function createWindow() {
 	mainWindow.on("closed", () => {
 		mainWindow = null;
 	});
+	
+	// const overlayWindow = new BrowserWindow({
+	// 	fullscreen: true,
+	// 	frame: false,
+	// });
 }
 app.on("ready", createWindow);
