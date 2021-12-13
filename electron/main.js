@@ -3,25 +3,39 @@ import isDev from "electron-is-dev";
 import path from "path";
 
 function createWindow() {
+	const config = {
+		devOpen: true,
+	};
 	const mainWindow = new BrowserWindow({
 		fullscreen: true,
-		width: 800,
-		height: 600,
+		width: 1280,
+		height: 720,
 		show: false,
 		frame: false,
 		transparent: true,
 		webPreferences: {
 			nodeIntegration: true,
 			enableRemoteModule: true,
-			contextIsolation: false
+			contextIsolation: false,
+			webSecurity: false
 		},
 	});
-	mainWindow.setIgnoreMouseEvents(true);
-	mainWindow.setAlwaysOnTop(true, "screen");
+	// mainWindow.setIgnoreMouseEvents(true);
+	// mainWindow.setAlwaysOnTop(true, "screen");
 	
-	globalShortcut.register("Alt+CommandOrControl+I", () => {
+	globalShortcut.register("CommandOrControl+Space", () => {
 		console.log("Shortcut used in [ MAIN ]");
 		mainWindow.webContents.send("test-event", Date.now());
+	});
+	globalShortcut.register("CommandOrControl+F12", () => {
+		console.log("F12 used in [ MAIN ]");
+		
+		if(config.devOpen) {
+			mainWindow.webContents.closeDevTools();
+		} else {
+			mainWindow.webContents.openDevTools();
+		}
+		config.devOpen = !config.devOpen;
 	});
 
 	const startURL = isDev

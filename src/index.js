@@ -10,7 +10,7 @@ import "./assets/css/index.css";
 ReactDOM.render(
 	<React.StrictMode>
 		<BrowserRouter>
-			<div>
+			{/* <div>
 				<ul>
 					<li>
 						<Link to="/">Home</Link>
@@ -24,7 +24,12 @@ ReactDOM.render(
 					<Route exact path="/" element={ <App /> } />
 					<Route path="/profile" element={ <Profile /> } />
 				</Routes>
-			</div>
+			</div> */}
+
+			<Routes>
+				<Route exact path="/" element={ <App /> } />
+				<Route path="/profile" element={ <Profile /> } />
+			</Routes>
 		</BrowserRouter>
 	</React.StrictMode>,
 	document.getElementById("root")
