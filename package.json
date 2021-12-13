@@ -30,6 +30,7 @@
 		"test": "react-scripts test",
 		"eject": "react-scripts eject",
 		"ebuild": "npm run build && node_modules/.bin/build",
+		"electron-rebuild": "electron-rebuild -w opencv4nodejs",
 		"dev": "concurrently \"yarn start\" \"wait-on http://localhost:3000 && electron .\""
 	},
 	"eslintConfig": {
@@ -54,5 +55,8 @@
 			"last 1 firefox version",
 			"last 1 safari version"
 		]
+	},
+	"devDependencies": {
+		"electron-rebuild": "^3.2.5"
 	}
 }

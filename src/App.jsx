@@ -1,5 +1,6 @@
 import React, { useRef, useState, useEffect } from "react";
 import Webcam from "react-webcam";
+import CV from "opencv4nodejs";
 
 import Konva from "konva";
 import { Html } from "react-konva-utils";
